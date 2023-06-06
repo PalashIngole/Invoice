@@ -139,7 +139,7 @@ public class RequestConverter {
 
 	}
 
-	public List<InvoiceInlineModel> invoiceRequestToInvoiceInline(InvoiceRequest invoiceRequest) {
+	public List<InvoiceInlineModel> invoiceRequestToInvoiceInline(InvoiceRequest invoiceRequest,InvoiceModel invoiceModel) {
 		List<InvoiceInlineModel> list = new ArrayList<>();
 		for (InvoiceInlineRequest inlineRequest : invoiceRequest.getInvoiceInlineRequest()) {
 			InvoiceInlineModel obj = new InvoiceInlineModel();
@@ -150,7 +150,6 @@ public class RequestConverter {
 			ProductModel productModel = productRepository.findByProductId(inlineRequest.getProductId());
 			obj.setProductModel(productModel);
 
-			InvoiceModel invoiceModel = invoiceRepository.findByInvoiceId(invoiceRequest.getInvoiceId());
 			obj.setInvoiceModel(invoiceModel);
 
 			list.add(obj);

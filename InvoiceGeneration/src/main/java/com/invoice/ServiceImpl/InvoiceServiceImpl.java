@@ -53,9 +53,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 		InvoiceModel invoiceModel = requestConverter.invoiceRequestToModel(invoiceRequest);
 		InvoiceModel modelSaved = invoiceRepository.save(invoiceModel);
 		
-		Long inviceId = modelSaved.getInvoiceId();
-		invoiceRequest.setInvoiceId(inviceId);
-		List<InvoiceInlineModel> invoiceInlineModel = requestConverter.invoiceRequestToInvoiceInline(invoiceRequest);
+		List<InvoiceInlineModel> invoiceInlineModel = requestConverter.invoiceRequestToInvoiceInline(invoiceRequest,modelSaved);
 		invoiceInlineRepository.saveAll(invoiceInlineModel);
 		return "Saved";
 	}
